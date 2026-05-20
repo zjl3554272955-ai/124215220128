@@ -1,0 +1,485 @@
+/* ========== 基础重置 ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Microsoft Yahei", "PingFang SC", sans-serif;
+  user-select: none;
+  overflow: hidden;
+}
+
+/* ========== 上部容器（唱片 + 介绍） ========== */
+.upper-container {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  margin-bottom: 30px;
+}
+
+/* ========== 唱片区域 ========== */
+.record-container {
+  position: relative;
+}
+
+.record-bg {
+  width: 260px;
+  height: 260px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+#record-img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background-image: url('images/record0.jpg');
+  background-size: cover;
+  background-position: center;
+  border: 6px solid #333;
+}
+
+/* 唱片旋转动画 */
+.rotate-play {
+  animation: rotate 8s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ========== 音乐介绍区域 ========== */
+.introduction-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text-container {
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+#music-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.author-container {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+#author-name {
+  font-weight: 500;
+}
+
+/* ========== 播放器主体 ========== */
+.audio-box {
+  width: 700px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 24px 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.audio-container {
+  width: 100%;
+}
+
+/* ========== 进度条 ========== */
+.a-progress {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.pgs-total {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+}
+
+.pgs-play {
+  height: 6px;
+  background: #1ed760;
+  border-radius: 3px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: width 0.1s linear;
+}
+
+.pgs-play::after {
+  content: '';
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  right: -7px;
+  top: -4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== 控制按钮区域 ========== */
+.a-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ========== 时间显示 ========== */
+.time-container {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 14px;
+  min-width: 110px;
+}
+
+.played-time {
+  color: #1ed760;
+  font-weight: 600;
+}
+
+.audio-time {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ========== 中间按钮组 ========== */
+.center-button-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+/* 通用小图标 */
+.center-icon {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: all 0.2s;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.center-icon:hover {
+  opacity: 1;
+}
+
+/* 播放模式 */
+.mode {
+  background-image: url('images/mode1.png');
+}
+
+/* 上一首 */
+.s-right {
+  background-image: url('images/上一首.png');
+  width: 28px;
+  height: 28px;
+}
+
+/* 下一首（旋转上一首图标） */
+.s-left {
+  background-image: url('images/上一首.png');
+  transform: rotate(180deg);
+  width: 28px;
+  height: 28px;
+}
+
+/* 音量 */
+.volume {
+  background-image: url('images/音量.png');
+}
+
+/* ========== 播放/暂停按钮 ========== */
+.icon-play {
+  width: 52px;
+  height: 52px;
+  background: url('images/继续播放.png') no-repeat center;
+  background-size: contain;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.icon-play:hover {
+  transform: scale(1.1);
+}
+
+.icon-pause {
+  width: 52px;
+  height: 52px;
+  background: url('images/暂停.png') no-repeat center;
+  background-size: contain;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.icon-pause:hover {
+  transform: scale(1.1);
+}
+
+/* ========== 音量滑块 ========== */
+#volumn-togger {
+  display: none;
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  outline: none;
+  z-index: 10;
+}
+
+#volumn-togger::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== 底部按钮组 ========== */
+.bottom-button-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.bottom-icon {
+  width: 36px;
+  height: 36px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: all 0.2s;
+}
+
+.bottom-icon:hover {
+  opacity: 1;
+}
+
+.list {
+  background-image: url('images/列表.png');
+}
+
+.MV {
+  background-image: url('images/MV.png');
+}
+
+/* 倍速按钮 */
+.speed {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  transition: background 0.2s;
+}
+
+.speed:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* ========== 音乐列表弹窗 ========== */
+.music-list {
+  display: none;
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 280px;
+  background: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.music-list-title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.line {
+  border: none;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  margin-bottom: 16px;
+}
+
+.all-list div {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 4px;
+}
+
+.all-list div:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #1ed760;
+}
+
+/* ========== 关闭列表的背景遮罩 ========== */
+#close-list {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 99;
+}
+
+/* ========== MV 视频弹窗 ========== */
+.mv-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+
+.mv-container {
+  width: 800px;
+  max-width: 90vw;
+  background: #1a1a1a;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+}
+
+.mv-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: #111;
+}
+
+.mv-title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.mv-close {
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.mv-close:hover {
+  opacity: 1;
+  color: #ff5252;
+}
+
+#mv-video {
+  width: 100%;
+  height: 450px;
+  display: block;
+  background: #000;
+}
+
+/* ========== 响应式适配 ========== */
+@media (max-width: 768px) {
+  .upper-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .record-bg {
+    width: 200px;
+    height: 200px;
+  }
+
+  #record-img {
+    width: 140px;
+    height: 140px;
+  }
+
+  #music-title {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .author-container {
+    text-align: center;
+  }
+
+  .audio-box {
+    width: 90vw;
+    padding: 16px;
+  }
+
+  .center-button-container {
+    gap: 12px;
+  }
+
+  .music-list {
+    width: 90vw;
+    right: 5vw;
+  }
+
+  .mv-container {
+    width: 95vw;
+  }
+
+  #mv-video {
+    height: 250px;
+  }
+}
